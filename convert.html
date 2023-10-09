@@ -1,0 +1,41 @@
+<html>
+<head></head>
+<body>
+<center><h1>Convert JS to .superDiamondBrowserExtension</h1></center>
+<input type="file" id="jsUpload" accept=".js">
+<button onclick="convert()">Convert</button>
+<script>
+function covert() {
+var file = document.getElementById("jsUpload").files[0];
+var fileContent = "reading..."
+var fileName = file.name;
+if (file) {
+    var reader = new FileReader();
+    reader.readAsText(file, "UTF-8");
+    reader.onload = function (evt) {
+     fileContent = evt.target.result;
+     download(name + ".superDiamondBrowserExtension", content)
+     alert("Sucess")
+    }
+    reader.onerror = function (evt) {
+     alert("we encoutered an error while reading file content so we can convert it. please try again.")
+    }
+}
+}
+function download(filename, text) {
+    var pom = document.createElement('a');
+    pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+    pom.setAttribute('download', filename);
+
+    if (document.createEvent) {
+        var event = document.createEvent('MouseEvents');
+        event.initEvent('click', true, true);
+        pom.dispatchEvent(event);
+    }
+    else {
+        pom.click();
+    }
+}
+</script>
+</body>
+</html>

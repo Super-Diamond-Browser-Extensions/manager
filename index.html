@@ -1,0 +1,26 @@
+<p><input type="file" id="extensionUpload" placeholder="Upload Super Diamond Browser Extension File"></input></p>
+<p><button onclick="upload()">Upload To Extensions</button></p>
+<script>
+function upload() {
+ var file = document.getElementById("extensionUpload").files[0];
+var fileContent = "reading..."
+var fileName = prompt("Enter Name of how you want to save this extension. so you can update the extension file later. using a in use name will overwrite the extension file");
+if (file) {
+    var reader = new FileReader();
+    reader.readAsText(file, "UTF-8");
+    reader.onload = function (evt) {
+     fileContent = evt.target.result;
+     try {
+      localStorage.setItem(fileName, fileContent)
+      alert("Extension Uploaded to Super Diamond Browser Succesfully. reload Super Diamond Browser for The Extension to apply.")
+     }
+     catch(err) {
+      alert("We Encountered an error While Uploading Extension to your Extension Storage. ERROR: " + err)
+     }
+    }
+    reader.onerror = function (evt) {
+     alert("We Encoutered an error while reading extension. you may try again")
+    }
+}
+}
+</script>

@@ -3,7 +3,7 @@
         if (e.origin !== "https://super-diamond-drive.github.io") {
             return
         }
-        const data = JSON.parse(e.data)
+        const data = e.data
         localStorage.setItem(prompt("Enter name of extension as how its gonna be saved"), data)
         alert("Restart Super Diamond Browser of extensions to apply")
     })

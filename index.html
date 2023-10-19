@@ -1,10 +1,11 @@
 <p><a href="converter.html">Converter</a> <a href="https://super-diamond-browser-extensions.github.io/store/index.html">Extension Store</a></p>
-<p><input type="file" id="extensionUpload" placeholder="Upload Super Diamond Browser Extension File" allow=".superDiamondBrowserExtension"></input></p>
+<p><input type="file" id="extensionUpload" placeholder="Upload Super Diamond Browser Extension File" allow=".superDiamondBrowserExtension, .binarySuperDiamondBrowserExtension"></input></p>
 <p><button onclick="upload()">Upload To Extensions</button></p>
 <script>
 function upload() {
  var file = document.getElementById("extensionUpload").files[0];
 var fileContent = "reading..."
+var extEndpoint = file.name.split(".")[file.name.split(".").length]
 var fileName = prompt("Enter Name of how you want to save this extension. so you can update the extension file later. using a in use name will overwrite the extension file");
 if (file) {
     var reader = new FileReader();
@@ -12,7 +13,12 @@ if (file) {
     reader.onload = function (evt) {
      fileContent = evt.target.result;
      try {
-      localStorage.setItem(fileName, fileContent)
+      if(extEndpoint = "superDiamondExtension") {
+       localStorage.setItem(fileName, fileContent)
+      }
+      if(extEndpoint = "binarySuperDiamondExtension") {
+       localStorage.setItem(eval(fileName, eval("String.fromCharCode(" + atob(fileContent) + ")"))
+      }
       alert("Extension Uploaded to Super Diamond Browser Succesfully. reload Super Diamond Browser for The Extension to apply.")
      }
      catch(err) {

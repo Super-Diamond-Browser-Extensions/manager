@@ -1,11 +1,23 @@
 <script>
-try {
-for (var i = 0; i < localStorage.length; i++){
- parent.eval(localStorage.getItem(localStorage.key(i)));
-}
-console.debug("Super Diamond Browser: Loaded Extensions Succesfully")
-}
-catch(err) {
- console.error("Super Diamond Browser: Extension Loading Error: " + err + " may be due to extension error")
+for (var i = 0; i < localStorage.length; i++) {
+ if(localStorage.key(i) !== "MemoryUsage") {
+ try {
+  var extensionManifest = JSON.parse(localStorage.getItem(localStorage.key(i)))
+  var extensionName = extensionManifest.name
+  console.debug("Super Diamond Browser: Identified Extension " + localStorage.key(i) + " as " + extensionName)
+ }
+ catch(err) {
+  extensionName = localStorage.key(i)
+  console.error("Super Diamond Browser: Failed to Identify Extension " + localStorage.key(i) + " due: " + err)
+ }
+ try {
+  parent.eval(extensionManifest.code)
+ }
+ catch(err) {
+  extensionName = localStorage.key(i)
+  console.error("Super Diamond Browser: Failed to Load Extension " + extensionName + " due: " + err)
+  alert("Super Diamond Browser: Failed to Load Extension " + extensionName + " due: " + err)
+ }
+ }
 }
 </script>

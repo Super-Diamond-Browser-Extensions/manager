@@ -1,12 +1,12 @@
 const CACHE_NAME = 'superdiamondbrowserextensions-offline';
 const CACHE_DATA = [
-  '/service-worker.js',
-  '/load-service-worker.html',
-  '/discDownload.html',
-  '/discImport.html',
-  '/index.html',
-  '/loadExtensions.html',
-  '/superDiamondDriveImport.html',
+  'service-worker.js',
+  'load-service-worker.html',
+  'discDownload.html',
+  'discImport.html',
+  'index.html',
+  'loadExtensions.html',
+  'superDiamondDriveImport.html',
 ];
 
 self.addEventListener('install', (event) => {
